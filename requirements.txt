@@ -1,1 +1,4 @@
-serial
+opencv-python
+numpy
+pyserial
+git+https://github.com/spotta-smart-pest-systems/pystlink
