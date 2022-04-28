@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Copyright Spotta Ltd. 2020
+Copyright Spotta Ltd. 2022
 All rights reserved.
-@author gareth.funk@spotta.co
+@author jordan.docker@spotta.co
 """
 
 import serial.tools.list_ports
@@ -31,7 +31,7 @@ if comport is None:
     raise Exception(message)
 ser = serial.Serial(comport)
 
-    
+
 ser.baudrate = 230400*4
 ser.set_buffer_size(rx_size=256000, tx_size=12800)
 ser.timeout = 0.100  # 100ms timeout
