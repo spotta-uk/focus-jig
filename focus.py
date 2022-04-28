@@ -18,7 +18,7 @@ comport = None
 for port in ports:
     # The UART has a specific vendor id (vid) and product id (pid)
     if port.vid == 1027 and port.pid == 24577:
-        comport = port.name
+        comport = port.device
         break
 if comport is None:
     message = "Error: couldn't find COM port for UART\n"
