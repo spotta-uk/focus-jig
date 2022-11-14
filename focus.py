@@ -19,7 +19,6 @@ def main():
     comport = find_comport()
     ser = serial.Serial(comport)
     ser.baudrate = 230400*4
-    ser.set_buffer_size(rx_size=256000, tx_size=12800)
     ser.timeout = 0.100  # 100ms timeout
     winname = "Spotta Focussing Program"
     cv2.destroyAllWindows()
@@ -98,8 +97,11 @@ def find_comport():
     comport = None
     for port in ports:
         # The UART has a specific vendor id (vid) and product id (pid)
+        if port.vid == 1155 and port.pid == 14159:
+            comport = port.device
+            break
         if port.vid == 1027 and port.pid == 24577:
-            comport = port.name
+            comport = port.device
             break
     if comport is None:
         message = "Error: couldn't find COM port for UART\n"
