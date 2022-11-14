@@ -13,12 +13,22 @@ import cv2
 import numpy as np
 from pathlib import Path
 import time
-
+from pystlink import PyStlink
+from stbridge import STBridge
+from pcbs.factory_pcb import FactoryPcb, IOExpander
 
 FOCUS_FIRMWARE = Path("forestpodv5-focus.srec")
 
 
 def main():
+    print("This python script (focus_automated.py) only works on Linux PCs. Use focus.py for Windows PCs")
+
+    pystlink = PyStlink(verbosity=0)
+    stbridge = STBridge()
+    io_expander = IOExpander(stbridge, 0x20)
+    factory_pcb = FactoryPcb(io_expander, quiet_mode=False)  # quiet_mode enable/disables buzzer sounds
+    factory_pcb.turn_off_all_peripherals()
+
     comport = find_comport()
     ser = serial.Serial(comport)
     ser.baudrate = 230400*4
@@ -28,11 +38,19 @@ def main():
     cv2.namedWindow(winname)
     cv2.moveWindow(winname, 0, 0)
 
+    factory_pcb.turn_on_pod()
+    time.sleep(0.1)
+
     while True:
         raw = get_jpeg_raw_data(ser)
 
         if len(raw) == 0:
             print(f"\nPrograming pod with {FOCUS_FIRMWARE}")
+            try:
+                pystlink.program_flash(str(FOCUS_FIRMWARE))
+            except Exception as e:
+                pass
+            time.sleep(0.6)
             continue
 
         # We have received (presumably!) jpeg data
