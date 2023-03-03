@@ -3,8 +3,16 @@
 ## Setup (LINUX PC)
 
 1.  Put this repository in ~/focus_jig
-2.  Install python version 3.10
-3.  Run ```~/focus_jig$ python3 -m pip install requirements_linux.txt``` 
+2.  Install packages using the commands below...
+    ```shell
+    sudo apt -y install python3.8
+    sudo apt -y install pip
+    sudo apt -y install git
+    sudo apt -y install libboost-python-dev
+    sudo apt -y install libfmt-dev
+    sudo apt -y install libusb-1.0-0-dev
+    ```
+3.  Run ```~/focus_jig$ python3.8 -m pip install -r  requirements_linux.txt``` 
 4.  Allow read and write access to the usb STLINK devices. For Ubuntu users this is done by creating a new rules file
 using the command... ```sudo nano /etc/udev/rules.d/90-my-extra-usb.rules``` and then fill the file with...
     ```shell
@@ -13,11 +21,14 @@ using the command... ```sudo nano /etc/udev/rules.d/90-my-extra-usb.rules``` and
     # STLINK-V3
     SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374f", MODE="0666"
     ```
-    save the file and exit nano. Now run the command ```udevadm control --reload``` to reload the usb rules.
+    save the file and exit nano. Now run the command ```sudo udevadm control --reload``` to reload the usb rules.
+    
+    If the Factory Programming PCB was plugged in at this point then it should be unplugged and re-plugged in
 
    5.  Set up the focusing jig hardware so everything is connected up as outlined below\
-       Linux PC <--> Factory Programming PCB <--> Sunrise PCB <--> Forest Pod PCB
-6. Run ```~/focus_jig$ python3 focus_automated_LINUX_ONLY.py```
+       Linux PC <--> Factory Programming PCB <--> Sunrise PCB <--> Forest Pod PCB\
+       Note: The 5V barrel jack should also be plugged into the Factory Programming PCB
+6. Run ```~/focus_jig$sudo python3.8 focus_automated_LINUX_ONLY.py```
 7. There should now be a low frame rate video feed appear on the screen
 
 
