@@ -5,7 +5,7 @@ Copyright Spotta Ltd. 2022
 All rights reserved.
 @author jordan.docker@spotta.co
 
-This script can focus ForestPodv5 boards (uses the red factory programming pcb and yellow sunrise pcb)
+This script can focus ForestPodv5 and ForestPodv6 boards (uses the red factory programming pcb and yellow sunrise pcb)
 """
 
 import serial.tools.list_ports
@@ -21,7 +21,7 @@ FOCUS_FIRMWARE = Path("forestpodv5-focus.srec")
 
 
 def main():
-    print("This python script (focus_automated.py) only works on Linux PCs. Use focus.py for Windows PCs")
+    print("This python script (focus_automated_LINUX_ONLY.py) only works on Linux PCs. Use focus.py for Windows PCs")
 
     pystlink = PyStlink(verbosity=0)
     stbridge = STBridge()
