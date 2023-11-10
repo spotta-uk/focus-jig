@@ -144,7 +144,7 @@ def get_jpeg_raw_data(ser):
         ser.reset_input_buffer()
         print("Waiting for data", end="... ")
         start_time = time.time()
-        while ser.in_waiting == 0 and ((time.time() - start_time) < 1):
+        while ser.in_waiting == 0 and ((time.time() - start_time) < 2.0):
             pass
         try:
             while True:

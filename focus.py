@@ -13,6 +13,7 @@ For a more automated solution use the focus_automated.py script (requires a linu
 import serial.tools.list_ports
 import cv2
 import numpy as np
+import time
 
 
 def main():
@@ -122,7 +123,8 @@ def get_jpeg_raw_data(ser):
         raw = []
         ser.reset_input_buffer()
         print("Waiting for data", end="... ")
-        while ser.in_waiting == 0:
+        start_time = time.time()
+        while ser.in_waiting == 0 and ((time.time() - start_time) < 2.0):
             pass
         try:
             while True:
