@@ -40,9 +40,9 @@ def main():
             print(f"\nPrograming pod with {FOCUS_FIRMWARE}")
             try:
                 pystlink.program_flash(str(FOCUS_FIRMWARE))
+                time.sleep(1.5)
             except Exception as e:
                 pass
-            time.sleep(0.6)
             continue
         video_feed_window.draw(raw)
 
