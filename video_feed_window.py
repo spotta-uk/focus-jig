@@ -43,6 +43,12 @@ def draw(raw):
         bands = [img[x[0]:x[1], :, :] for x in zip(band_starts, band_ends)]
         # https://www.pyimagesearch.com/2015/09/07/blur-detection-with-opencv/
         focus_coefficients = [cv2.Laplacian(cv2.cvtColor(x, cv2.COLOR_BGR2GRAY), cv2.CV_64F).var() for x in bands]
+        score = round(sum(focus_coefficients))
+        if score > 140000:
+            result = "PASSED focusing"
+        else:
+            result = "------"
+        print(score, result)
         max_focus = max(float(3000), float(max(focus_coefficients)))
         focus_scale = [min([1.0, x/max_focus]) for x in focus_coefficients]
         overlay_colors = [(0, int(255*(x)), int(255*(1-x))) for x in focus_scale] # BGR
