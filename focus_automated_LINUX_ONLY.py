@@ -22,7 +22,8 @@ parser.add_argument("--board",type=str,help="board to program and run focus jig 
 args = parser.parse_args()
 
 def main():
-    FOCUS_FIRMWARE = Path("bin")/ (args.board + "-focus.srec")
+#    FOCUS_FIRMWARE = Path("bin")/ (args.board + "-focus.srec")
+    FOCUS_FIRMWARE = Path("bin")/ (args.board + "-focus.bin")
 
     if not FOCUS_FIRMWARE.is_file():
         print("\033[91m Error:\033[0m File "+str(FOCUS_FIRMWARE) + " was not found!")
