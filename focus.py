@@ -6,7 +6,7 @@ All rights reserved.
 @author jordan.docker@spotta.co
 
 This script can focus ForestPodv5 boards (uses the black development pcb and yellow sunrise pcb)
-The forestpodv5-focus.srec firmware needs to be loaded up onto the pod prior to running this script
+The forestpodv6-focus.srec firmware needs to be loaded up onto the pod prior to running this script
 For a more automated solution use the focus_automated.py script (requires a linux pc and red factory programming pcb)
 """
 
