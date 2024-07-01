@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Terminal=true
+Name=Focus Bed Pod v11
+Icon=utilities-terminal
+Exec=/home/spotta/repos/focus_jig/venv/bin/python focus_automated_LINUX_ONLY.py --board bedpodv11
+Path=/home/spotta/repos/focus_jig
+Categories=Application;
