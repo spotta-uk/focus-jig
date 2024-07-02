@@ -13,6 +13,7 @@ apt install -y git python3.12 python3-pip python3.12-venv
 
 echo -n "$rules" > "/etc/udev/rules.d/90-spotta-stlink.rules"
 udevadm control --reload
+usermod -a -G dialout $SUDO_USER
 
 sudo -u $SUDO_USER python3 -m venv venv
 venv/bin/python3 -m pip install setuptools
