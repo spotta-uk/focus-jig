@@ -42,7 +42,7 @@ lines to the right of the video feed help show which areas of the image are most
 2. Run `git clone https://github.com/spotta-uk/focus-jig.git` to get this repository. The recommended location for this
 repos is ~/repos/focus-jig
 3. Run `sudo ./install_focus_jig_on_linux.sh`. This shell script will likely need to be made executable before it will run.
-4. Run `sudo cp "focus bedpodv11.desktop" "~/Desktop/focus bedpodv11.desktop"` to put a shortcut for the focusing program
+4. Run `sudo cp focus_bed_pod_v11.desktop ~/Desktop/focus_bed_pod_v11.desktop` to put a shortcut for the focusing program
 on the desktop. Open this file and replace USER_NAME_GOES_HERE with the actual pc username. Then right hand click on the
 desktop icon and click "Allow Launching" to enable the shortcut.
 5. Reboot the PC (necessary step to allow updated usb permissions to take effect)
