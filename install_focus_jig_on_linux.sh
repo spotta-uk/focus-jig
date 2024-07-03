@@ -9,7 +9,8 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="374f", MODE="0666"
 
 apt update
 apt upgrade -y
-apt install -y git python3.12 python3-pip python3.12-venv
+apt install -y python3.12 python3-pip python3.12-venv
+apt install -y libboost-python-dev libfmt-dev libusb-1.0-0-dev
 
 echo -n "$rules" > "/etc/udev/rules.d/90-spotta-stlink.rules"
 udevadm control --reload
