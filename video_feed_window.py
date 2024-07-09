@@ -64,17 +64,8 @@ def draw(raw):
         stitched = np.concatenate((img, barchart), axis=1)
         # Draw a line for the target focus
         cv2.line(stitched, (0, height//2), (width + barchart_width, height//2), (255, 0, 0), 2)
-        # Draw the arrow instructions box
-        instructions = np.zeros((100, width + barchart_width, 3), np.uint8)
-        color0 = (0, 255, 255)
-        color1 = (255, 255, 0)
-        cv2.ellipse(instructions, (50, 50), (25, 25), 90, 0, 270, color0, 2, cv2.LINE_AA)
-        cv2.arrowedLine(instructions, (75, 50), (75, 51), color0, 2, cv2.LINE_AA, tipLength=10)
-        cv2.arrowedLine(instructions, (100, 75), (100, 25), color0, 2, cv2.LINE_AA)
-        cv2.ellipse(instructions, (250, 50), (25, 25), 90, 90, 360, color1, 2, cv2.LINE_AA)
-        cv2.arrowedLine(instructions, (225, 50), (225, 51), color1, 2, cv2.LINE_AA, tipLength=10)
-        cv2.arrowedLine(instructions, (300, 25), (300, 75), color1, 2, cv2.LINE_AA)
-        # Stitch again
-        stitched = np.concatenate((stitched, instructions), axis=0)
+        # instructions = np.zeros((100, width + barchart_width, 3), np.uint8)
+        # # Stitch again
+        # stitched = np.concatenate((stitched, instructions), axis=0)
         cv2.imshow(winname, stitched)
         cv2.waitKey(25)
