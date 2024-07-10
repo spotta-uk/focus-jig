@@ -48,4 +48,4 @@ Thumbs.db
 /img.jpeg
 
 # Python venv
-.venv
+venv/
