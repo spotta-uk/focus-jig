@@ -5,6 +5,7 @@ import cv2
 import numpy as np
 
 winname = "Spotta Focussing Program"
+threshold = 140000
 
 
 def setup():
@@ -27,14 +28,6 @@ def draw(raw):
         width = img.shape[1]
         height = img.shape[0]
 
-        # Crop the image down to remove background
-        # crop_top = int(height/14)
-        # crop_left = int(width/8)
-        # crop_right = width - crop_left
-        # img = img[crop_top:, crop_left:crop_right, :]
-        # width = img.shape[1]
-        # height = img.shape[0]
-
         # Split the image into bands
         num_bands = 9
         band_height = int(height/num_bands)
@@ -44,11 +37,8 @@ def draw(raw):
         # https://www.pyimagesearch.com/2015/09/07/blur-detection-with-opencv/
         focus_coefficients = [cv2.Laplacian(cv2.cvtColor(x, cv2.COLOR_BGR2GRAY), cv2.CV_64F).var() for x in bands]
         score = round(sum(focus_coefficients))
-        if score > 140000:
-            result = "PASSED focusing"
-        else:
-            result = "------"
-        print(score, result)
+        passed = score >= threshold
+        result = "PASSED" if passed else "FAIL"
         max_focus = max(float(3000), float(max(focus_coefficients)))
         focus_scale = [min([1.0, x/max_focus]) for x in focus_coefficients]
         overlay_colors = [(0, int(255*(x)), int(255*(1-x))) for x in focus_scale] # BGR
@@ -64,8 +54,19 @@ def draw(raw):
         stitched = np.concatenate((img, barchart), axis=1)
         # Draw a line for the target focus
         cv2.line(stitched, (0, height//2), (width + barchart_width, height//2), (255, 0, 0), 2)
-        # instructions = np.zeros((100, width + barchart_width, 3), np.uint8)
-        # # Stitch again
-        # stitched = np.concatenate((stitched, instructions), axis=0)
+        footer = np.zeros((100, width + barchart_width, 3), np.uint8)
+        red = (0, 0, 255)  # BGR
+        green = (0, 255, 0)  # BGR
+        cv2.putText(
+            img=footer,
+            text=f"{score:6} / {threshold} is required. {result}",
+            org=(10, 60),
+            fontFace=cv2.FONT_HERSHEY_DUPLEX,
+            fontScale=0.75,
+            color=green if passed else red,
+            thickness=1
+        )
+        # Stitch again
+        stitched = np.concatenate((stitched, footer), axis=0)
         cv2.imshow(winname, stitched)
         cv2.waitKey(25)
