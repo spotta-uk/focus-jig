@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 
 winname = "Spotta Focussing Program"
-threshold = 21000
+threshold = 17500
 
 
 def setup():
