@@ -1,5 +1,5 @@
 opencv-python==4.10.0.82
 numpy==1.26.4
 pyserial==3.5
-git+https://github.com/spotta-smart-pest-systems/pystlink
+pyocd==0.36.0
 git+https://github.com/spotta-smart-pest-systems/stbridge
