@@ -41,8 +41,9 @@ lines to the right of the video feed help show which areas of the image are most
 1. Install Ubuntu 24.04 LTS
 2. Run `git clone https://github.com/spotta-uk/focus-jig.git` to get this repository.
 3. Run `sudo ./install_focus_jig_on_linux.sh`.
-4. Run `cp focus_bed_pod_v11.desktop ~/Desktop/focus_bed_pod_v11.desktop` to put a shortcut for the focusing program
+4. Run `source venv/bin/activate` and then `pyocd pack install STM32L496VGTx`, this installs necessary data to flash the target chip, ensure this command is successful by typing `pyocd list --targets | grep stm32l496`, you should see a list of stm32l496 targets
+5. Run `cp focus_bed_pod_v11.desktop ~/Desktop/focus_bed_pod_v11.desktop` to put a shortcut for the focusing program
 on the desktop. Open this file and replace USER_NAME_GOES_HERE with the actual pc username. Then right hand click on the
 desktop icon and click "Allow Launching" to enable the shortcut.
-5. Run `reboot` to reboot the PC. This is a necessary step to allow the updated usb permissions to take effect.
+6. Run `reboot` to reboot the PC. This is a necessary step to allow the updated usb permissions to take effect.
 
