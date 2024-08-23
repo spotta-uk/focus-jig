@@ -17,8 +17,10 @@ udevadm control --reload
 usermod -a -G dialout $SUDO_USER
 
 sudo -u $SUDO_USER python3 -m venv venv
-venv/bin/python3 -m pip install setuptools
-venv/bin/python3 -m pip install -r requirements_linux.txt
+source venv/bin/activate
+pip3 install setuptools
+pip3 install -r requirements_linux.txt
+pyocd pack install STM32L496VGTx
 
 echo
 echo
