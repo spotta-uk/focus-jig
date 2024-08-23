@@ -20,7 +20,7 @@ sudo -u $SUDO_USER python3 -m venv venv
 source venv/bin/activate
 pip3 install setuptools
 pip3 install -r requirements_linux.txt
-pyocd pack install STM32L496VGTx
+pyocd pack --install STM32L496VGTx
 
 echo
 echo
