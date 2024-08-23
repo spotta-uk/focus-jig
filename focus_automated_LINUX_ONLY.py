@@ -52,7 +52,7 @@ def main():
             print(f"\nPrograming pod with {FOCUS_FIRMWARE}")
             try:
                 program_flash(FOCUS_FIRMWARE)
-                time.sleep(1.5)
+                time.sleep(3)
             except Exception as e:
                 pass
             continue
