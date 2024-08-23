@@ -21,10 +21,12 @@ parser = argparse.ArgumentParser(description="This script can focus bedpod and f
 parser.add_argument("--board",type=str,help="board to program and run focus jig application on")
 args = parser.parse_args()
 
+
 def program_flash(binary_file):
-   subprocess.run(["pyocd","load","-e", "chip","--frequency","4000khz","--target","stm32l496vgtx","-a",
+   PYOCD_EXE = Path("venv/bin")/ "pyocd"
+   subprocess.run([PYOCD_EXE,"load","-e", "chip","--frequency","4000khz","--target","stm32l496vgtx","-a",
                     "0x08000000","--format","bin",binary_file])
-   subprocess.run(["pyocd","reset","--target","stm32l496vgtx"])
+   subprocess.run([PYOCD_EXE,"reset","--target","stm32l496vgtx"])
 
 def main():
     
